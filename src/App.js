@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Modal from "react-modal";
 import { useSnackbar } from "notistack";
-import DataForm from "./components/DataForm";
-import Charts from "./components/Charts";
-import RecentList from "./components/RecentList";
+import DataForm from "./DataForm";
+import Charts from "./Charts";
+import RecentList from "./RecentList";
 
 Modal.setAppElement("#root");
 
