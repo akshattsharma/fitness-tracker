@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Modal from "react-modal";
 import { useSnackbar } from "notistack";
-import DataForm from "./DataForm";
-import Charts from "./Charts";
-import RecentList from "./RecentList";
+import DataForm from "./components/DataForm";
+import Charts from "./components/Charts";
+import RecentList from "./components/RecentList";
 
 Modal.setAppElement("#root");
 
@@ -69,8 +69,15 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>Health And Fitness Tracker</h1>
-        <button className="btn primary" onClick={openAdd}>+ Add data</button>
       </header>
+
+      <section className="panel intro">
+        <div>
+          <h2>Update Today's Data</h2>
+          <p className="muted">Log your calorie intake, calories burned and a short note.</p>
+        </div>
+        <button className="btn primary" onClick={openAdd}>+ Add data</button>
+      </section>
 
       <section className="summary" aria-label="Totals">
         <div className="stat"><span className="stat-label">Calories in</span><strong>{totals.intake}</strong></div>

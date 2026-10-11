@@ -12,12 +12,12 @@ export default function RecentList({ entries, onEdit, onDelete }) {
           {entries.map((e) => (
             <li key={e.id} className="row">
               <div className="row-main">
-                <span className="row-date">{new Date(e.date + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                <span className="row-date">{e.date}</span>
                 <span className="row-desc">{e.description}</span>
               </div>
               <div className="row-nums">
-                <span className="in">In: {e.intake} kcal</span>
-                <span className="out">Burned: {e.burned} kcal</span>
+                <span className="in">{`Calories Intake = ${e.intake}`}</span>
+                <span className="out">{`Calories Burned = ${e.burned}`}</span>
               </div>
               <div className="row-actions">
                 <button className="icon-btn" aria-label="Edit" title="Edit" onClick={() => onEdit(e)}><FiEdit2 /></button>

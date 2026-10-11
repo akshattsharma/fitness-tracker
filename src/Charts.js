@@ -13,14 +13,15 @@ const fmt = (d) =>
   new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
 export default function Charts({ entries, totals }) {
-  // Last week = 7 days ending at the most recent entry; same-day entries are combined.
+  // Last week = the 7 days up to today; same-day entries are combined.
   const weekly = useMemo(() => {
     if (!entries.length) return [];
-    const latest = new Date(entries[0].date + "T00:00:00").getTime();
+    const d = new Date();
+    const latest = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
     const byDate = {};
     entries.forEach((e) => {
       const t = new Date(e.date + "T00:00:00").getTime();
-      if (latest - t < 7 * DAY) {
+      if (latest - t <= 7 * DAY && t <= latest) {
         byDate[e.date] = byDate[e.date] || { date: e.date, intake: 0, burned: 0 };
         byDate[e.date].intake += Number(e.intake);
         byDate[e.date].burned += Number(e.burned);
@@ -41,7 +42,7 @@ export default function Charts({ entries, totals }) {
 
   return (
     <section className="charts">
-      {entries.length > 0 && (
+      {weekly.length > 0 && (
         <div className="panel">
           <h2>Weekly Health Trends</h2>
           <div className="chart-box">
